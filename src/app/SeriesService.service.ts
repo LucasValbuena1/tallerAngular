@@ -9,7 +9,7 @@ import { Serie } from './series/Series';
 })
 export class SeriesServiceService {
 
-  private apiUrl: string = environment.baseUrl + 'series';
+  private apiUrl: string = environment.baseUrl ;
 
   constructor(private http: HttpClient) { }
 

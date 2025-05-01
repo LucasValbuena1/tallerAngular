@@ -1,17 +1,40 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col mb-2" *ngFor="let book of books">
-      <div class="card p-2" style="width: 15rem; height: 33rem">
-        <img
-          class="card-img-top"
-          src="{{ book.image }}"
-          alt="{{ book.name }}"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ book.name }}</h5>
-          <p class="card-text">[{{ book.editorial.name }}]</p>
-        </div>
+    <!-- Tabla de series (izquierda) -->
+    <div class="col-md-8">
+      <table class="table table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Seasons</th>
+            <th>Channels</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let serie of series">
+            <th scope="row">{{ serie.id }}</th>
+            <td
+              (click)="selectSerie(serie)"
+              style="cursor: pointer; color: #007bff; text-decoration: underline;"
+            >
+              {{ serie.name }}
+            </td>
+            <td>{{ serie.seasons }}</td>
+            <td>{{ serie.channel }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Aquí el resumen del promedio -->
+      <div class="mt-2">
+        <p><strong>Seasons average:</strong> {{ averageSeasons }}</p>
       </div>
+    </div>
+
+    <!-- Detalle (derecha) -->
+    <div class="col-md-4" *ngIf="serieSeleccionada">
+      <app-DetallarSerie [serie]="serieSeleccionada"></app-DetallarSerie>
     </div>
   </div>
 </div>
